@@ -1,4 +1,5 @@
-
+result
+result/*
 input/miR_Family_Info.txt
 input/UTR_Sequences.txt
 input/ORF_Sequences.txt

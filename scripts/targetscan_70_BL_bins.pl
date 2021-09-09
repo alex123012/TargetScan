@@ -35,7 +35,7 @@ use Statistics::Lite qw(:all);
 
 # Generic tree to use to get branch lengths for binning purposes
 # $treeFile = "pct_trees_parameters/Unbinned_3UTR_tree.txt";
-$treeFile = "../PCT_parameters/Tree.generic.txt";
+$treeFile = "PCT_parameters/Tree.generic.txt";
 
 $refGenome = 9606;
 
