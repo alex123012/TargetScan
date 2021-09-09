@@ -1,3 +1,9 @@
+
+input/miR_Family_Info.txt
+input/UTR_Sequences.txt
+input/ORF_Sequences.txt
+tmp/*
+tmp
 !Build/
 .last_cover_stats
 /META.yml

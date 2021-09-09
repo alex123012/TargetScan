@@ -98,13 +98,13 @@ UTR_FILE=$exten
 echo "processed UTR file to ${UTR_FILE}"
 
 echo "Get site predictions"
-perl targetscan_70.pl $MIRNA_FILE $UTR_FILE $TS_SITES
+perl scripts/targetscan_70.pl $MIRNA_FILE $UTR_FILE $TS_SITES
 
 echo "Get bins"
-perl targetscan_70_BL_bins.pl $UTR_FILE > $TS_BINS
+perl scripts/targetscan_70_BL_bins.pl $UTR_FILE > $TS_BINS
 
 echo "Get PCT"
-perl targetscan_70_BL_PCT.pl $MIRNA_FILE $TS_SITES $TS_BINS > $TS_PCT
+perl scripts/targetscan_70_BL_PCT.pl $MIRNA_FILE $TS_SITES $TS_BINS > $TS_PCT
 
 echo "processing miRNA file for context++ script ${MIRNA_FILE}"
 MIRNA_CONTEXT=`basename $MIRNA_FILE`
@@ -113,10 +113,10 @@ cut -f1,3,4,5 $MIRNA_FILE > $MIRNA_CONTEXT
 echo "processed miRNA file to ${MIRNA_CONTEXT}"
 
 echo "Get ORF info"
-perl targetscan_count_8mers.pl $MIRNA_FILE $ORF_FILE $TS_ORF_LENGTHS >| $TS_ORF_COUNTS
+perl scripts/targetscan_count_8mers.pl $MIRNA_FILE $ORF_FILE $TS_ORF_LENGTHS >| $TS_ORF_COUNTS
 
 echo "Get context scores"
-perl targetscan_70_context_scores.pl $MIRNA_CONTEXT $UTR_FILE $TS_PCT $TS_ORF_LENGTHS $TS_ORF_COUNTS $TS_CONTEXT
+perl scripts/targetscan_70_context_scores.pl $MIRNA_CONTEXT $UTR_FILE $TS_PCT $TS_ORF_LENGTHS $TS_ORF_COUNTS $TS_CONTEXT
 
 rm -rf tmp
 
