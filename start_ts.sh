@@ -1,4 +1,4 @@
-help="Description: Calculate context scores for miRNA
+help='Description: Calculate context scores for miRNA
                      using TargetScan methods.
 
         USAGE:
@@ -19,9 +19,9 @@ help="Description: Calculate context scores for miRNA
                                     called "All_cell_lines.AIRs.txt"
 
         Output file:
-                ContextScoresOutput_file => Lists context scores and contributions"
+                ContextScoresOutput_file => Lists context scores and contributions'
 
-required_types="** Required input files:
+required_types='** Required input files:
 
         1 - miRNA_file    => mature miRNA information
 
@@ -58,7 +58,7 @@ required_types="** Required input files:
                         a. Gene/UTR ID or name
                         b. Species ID for this gene/UTR (must match ID in miRNA file)
                         c. Aligned ORF (with gaps from alignment or without them)
-"
+'
 
 if [ -z "$1" ]; then
     echo "$help"
