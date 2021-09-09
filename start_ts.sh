@@ -1,78 +1,68 @@
-help='Description: Calculate context scores for miRNA
-                     using TargetScan methods.
+if [[ -z "$1" || "$1" -eq "-h" || "$1" -eq "--help" ]]; then
+    echo "Description: Calculate context scores for miRNA
+		     using TargetScan methods.
 
-        USAGE:
-                ./start_targetscan.sh miRNA_file UTR_file ORF_file ContextScoresOutput_file
+	USAGE:
+		./start_targetscan.sh miRNA_file UTR_file ORF_file ContextScoresOutput_file
 
-        EXAMPLE:
-                ./start_targetscan.sh miR_Family_Info.txt UTR_Sequences.txt ORF_Sequences.txt Targets_output.txt
-
-
-        Required input files:
-                miRNA_file       => mature miRNA data
-                UTR_file         => aligned UTRs
-                ORF_file         => ORFs corresponding to aligned 3' UTRs
-                TA_SPS_FILE      => TA and SPS parameters called "TA_SPS_by_seed_region.txt"
-                CS++ parameters  => Parameters for context++ score model (Agarwal et al., 2015)
-                                    called "Agarwal_2015_parameters.txt"
-                UTR profiles     => Affected isoform ratios (AIRs) by 3' UTR region
-                                    called "All_cell_lines.AIRs.txt"
-
-        Output file:
-                ContextScoresOutput_file => Lists context scores and contributions'
-
-required_types='** Required input files:
-
-        1 - miRNA_file    => mature miRNA information
-
-                contains five fields (tab-delimited):
-                miR family  Seed+m8 Species ID  MiRBase ID  Mature sequence
+	EXAMPLE:
+		./start_targetscan.sh miR_Family_Info.txt UTR_Sequences.txt ORF_Sequences.txt Targets_output.txt
 
 
-                        a. miRNA family ID/name
-                        b. The 7 nucleotide long seed region sequence.
-                        c. species ID in which this miRNA has been annotated
-                        d. ID for this mature miRNA
-                        e. sequence of this mature miRNA
+	Required input files:
+		miRNA_file       => mature miRNA data
+		UTR_file         => aligned UTRs
+		ORF_file         => ORFs corresponding to aligned 3' UTRs
+		TA_SPS_FILE      => TA and SPS parameters called 'TA_SPS_by_seed_region.txt'
+		CS++ parameters  => Parameters for context++ score model (Agarwal et al., 2015)
+				    called 'Agarwal_2015_parameters.txt'
+		UTR profiles     => Affected isoform ratios (AIRs) by 3' UTR region
+				    called 'All_cell_lines.AIRs.txt'
 
-                ex:
-                let-7j-3p  UAUACAG  9031  gga-let-7j-3p  CUAUACAGUCUAUUGCCUUCCU
-                miR-1      GGAAUGG  9031  gga-miR-1c     UGGAAUGGAAAGCAGUAUGUAU
-
-        2 - UTR_file      => Aligned UTRs
-
-                contains three fields (tab-delimited):
-                        a. Gene/UTR ID or name
-                        b. Species ID for this gene/UTR (must match ID in miRNA file)
-                        c. Aligned UTR or gene (with gaps from alignment)
-                ex:
-                BMP8B   9606    GUCCACCCGCCCGGC
-                BMP8B   9615    -GUG--CUGCCCACC
-
-                A gene will typically be represented on multiple adjacent lines.
+	Output file:
+		ContextScoresOutput_file => Lists context scores and contributions
 
 
-        3 - ORF file      => ORFs matching 3' UTRs in UTR_file
+** Required input files:
 
-                contains three fields (tab-delimited):
-                        a. Gene/UTR ID or name
-                        b. Species ID for this gene/UTR (must match ID in miRNA file)
-                        c. Aligned ORF (with gaps from alignment or without them)
-'
+	1 - miRNA_file    => mature miRNA information
 
-if [ -z "$1" ]; then
-    echo "$help"
+		contains five fields (tab-delimited):
+		miR family  Seed+m8 Species ID  MiRBase ID  Mature sequence
+
+
+			a. miRNA family ID/name
+			b. The 7 nucleotide long seed region sequence.
+			c. species ID in which this miRNA has been annotated
+			d. ID for this mature miRNA
+			e. sequence of this mature miRNA
+
+		ex:
+		let-7j-3p  UAUACAG  9031  gga-let-7j-3p  CUAUACAGUCUAUUGCCUUCCU
+		miR-1      GGAAUGG  9031  gga-miR-1c     UGGAAUGGAAAGCAGUAUGUAU
+
+	2 - UTR_file      => Aligned UTRs
+
+		contains three fields (tab-delimited):
+			a. Gene/UTR ID or name
+			b. Species ID for this gene/UTR (must match ID in miRNA file)
+			c. Aligned UTR or gene (with gaps from alignment)
+		ex:
+		BMP8B   9606    GUCCACCCGCCCGGC
+		BMP8B   9615    -GUG--CUGCCCACC
+
+		A gene will typically be represented on multiple adjacent lines.
+
+
+	3 - ORF file      => ORFs matching 3' UTRs in UTR_file
+
+		contains three fields (tab-delimited):
+			a. Gene/UTR ID or name
+			b. Species ID for this gene/UTR (must match ID in miRNA file)
+			c. Aligned ORF (with gaps from alignment or without them)
+	"
     exit
 fi
-
-case "$1" in 
-    -h|--help) 
-        echo $help
-        echo
-        echo $required_types
-        exit
-    ;;
-esac
 
 MIRNA_FILE=$1
 UTR_FILE=$2
