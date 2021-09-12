@@ -1,4 +1,5 @@
 result
+isomiRNA_info.txt
 result/*
 input/miR_Family_Info.txt
 input/UTR_Sequences.txt
