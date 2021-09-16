@@ -68,11 +68,12 @@ MIRNA_FILE=$1
 UTR_FILE=$2
 ORF_FILE=$3
 
-TS_SITES='tmp/targetscan_70_output.txt'
-TS_BINS='tmp/UTRs_median_BLs_bins.output.txt'
-TS_PCT='tmp/targetscan_70_output.BL_PCT.output.txt'
-TS_ORF_COUNTS="tmp/ORF_8mer_counts.txt"
-TS_ORF_LENGTHS="tmp/ORF.lengths.txt"
+TMP=`echo "$UTR_FILE" | cut -d'.' -f1`
+TS_SITES="${TMP}/targetscan_70_output.txt"
+TS_BINS="${TMP}/UTRs_median_BLs_bins.output.txt"
+TS_PCT="${TMP}/targetscan_70_output.BL_PCT.output.txt"
+TS_ORF_COUNTS="${TMP}/ORF_8mer_counts.txt"
+TS_ORF_LENGTHS="${TMP}/ORF.lengths.txt"
 
 TS_CONTEXT='result/targetscan_70_context_scores_output.txt'
 
@@ -82,7 +83,7 @@ mkdir result
 # Process UTR file
 echo "processing UTR file ${UTR_FILE}"
 exten=`basename $UTR_FILE`
-exten="tmp/${exten}"
+exten="${TMP}/${exten}"
 cut -f1,4,5 $UTR_FILE > $exten
 UTR_FILE=$exten
 echo "processed UTR file to ${UTR_FILE}"
@@ -98,7 +99,7 @@ perl scripts/targetscan_70_BL_PCT.pl $MIRNA_FILE $TS_SITES $TS_BINS > $TS_PCT
 
 echo "processing miRNA file for context++ script ${MIRNA_FILE}"
 MIRNA_CONTEXT=`basename $MIRNA_FILE`
-MIRNA_CONTEXT="tmp/${MIRNA_CONTEXT}"
+MIRNA_CONTEXT="${TMP}/${MIRNA_CONTEXT}"
 cut -f1,3,4,5 $MIRNA_FILE > $MIRNA_CONTEXT
 echo "processed miRNA file to ${MIRNA_CONTEXT}"
 
@@ -111,4 +112,3 @@ perl scripts/targetscan_70_context_scores.pl $MIRNA_CONTEXT $UTR_FILE $TS_PCT $T
 rm -rf tmp
 
 echo "Your result file is in ${TS_CONTEXT}"
-
