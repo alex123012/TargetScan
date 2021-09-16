@@ -1,4 +1,4 @@
-if [[ -z "$1" || "$1" -eq "-h" || "$1" -eq "--help" ]]; then
+if [[ -z "$1" || "$1" == "-h" || "$1" == "--help" ]]; then
     echo "Description: Calculate context scores for miRNA
 		     using TargetScan methods.
 
