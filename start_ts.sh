@@ -68,7 +68,7 @@ MIRNA_FILE=$1
 UTR_FILE=$2
 ORF_FILE=$3
 
-TMP=`basename $UTR_FILE`
+TMP=`basename $UTR_FILE	`
 TMP=`echo "$TMP" | cut -d'.' -f1`
 echo "$TMP"
 TMP="tmp/$TMP"
@@ -111,6 +111,6 @@ perl scripts/targetscan_count_8mers.pl $MIRNA_FILE $ORF_FILE $TS_ORF_LENGTHS >| 
 echo "Get context scores"
 perl scripts/targetscan_70_context_scores.pl $MIRNA_CONTEXT $UTR_FILE $TS_PCT $TS_ORF_LENGTHS $TS_ORF_COUNTS $TS_CONTEXT
 
-rm -rf $TMP
+# rm -rf $TMP
 
 echo "Your result file is in ${TS_CONTEXT}"
