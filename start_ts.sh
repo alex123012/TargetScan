@@ -69,6 +69,7 @@ UTR_FILE=$2
 ORF_FILE=$3
 
 TMP=${`echo "$UTR_FILE" | cut -d'.' -f1`}
+echo "$TMP"
 TMP="tmp/$TMP"
 TS_SITES="${TMP}/targetscan_70_output.txt"
 TS_BINS="${TMP}/UTRs_median_BLs_bins.output.txt"
