@@ -68,7 +68,7 @@ MIRNA_FILE=$1
 UTR_FILE=$2
 ORF_FILE=$3
 
-TMP=${`echo "$UTR_FILE" | cut -d'.' -f1`}
+TMP=`echo "$UTR_FILE" | cut -d'.' -f1`
 echo "$TMP"
 TMP="tmp/$TMP"
 TS_SITES="${TMP}/targetscan_70_output.txt"
